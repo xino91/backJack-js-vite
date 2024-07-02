@@ -7,6 +7,7 @@ h1,h2,h3,h4{
 /* Estilos generales para el cuerpo */
 body {
   height: 100vh;
+  height: 100%;
   background: radial-gradient(circle at center, #006400, #004d00); /* Tablero, fondo gradiente */
   color: white;
   font-family: Arial, sans-serif;
