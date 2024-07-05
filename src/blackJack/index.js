@@ -4,6 +4,7 @@ import { valorCarta } from './usecases/valorCarta';
 import { crearCartaHTML } from './usecases/crearCartaHTML';
 import { turnoComputadora } from './usecases/turnoComputadora';
 import { comprobarGanador } from './usecases/comprobarGanador';
+import { updateMarcadorImagenDOM } from './usecases/funcionesAuxiliares';
 
 let marcadorJugador = 0;
 let marcadorComputadora = 0;
@@ -43,23 +44,21 @@ boton_pedirCarta.addEventListener('click', () => {
     
     marcadorJugador = marcadorJugador + valorCarta(carta);
     console.log('marcadorJugador', marcadorJugador);
-    puntosHTML[1].innerText = marcadorJugador;
-
     const cartaHTML = crearCartaHTML(carta);
-    divCartasJugador.append(cartaHTML);
+    updateMarcadorImagenDOM(puntosHTML[1], marcadorJugador, divCartasJugador, cartaHTML);
     
     if(marcadorJugador > 21 ){
         console.warn('Lo siento, perdiste');
         boton_pedirCarta.disabled = true;
         boton_detener.disabled = true;
-        marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck);
+        marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck, marcadorComputadora, marcadorJugador);
         comprobarGanador(marcadorComputadora, marcadorJugador);
     }
     else if (marcadorJugador === 21 ){
         console.warn('Genial, 21');
         boton_pedirCarta.disabled = true;
         boton_detener.disabled = true;
-        marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck);
+        marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck, marcadorComputadora, marcadorJugador);
         comprobarGanador(marcadorComputadora, marcadorJugador);
     }   
 });
@@ -69,7 +68,8 @@ boton_detener.addEventListener('click', () => {
     boton_detener.disabled = true;
     boton_pedirCarta.disabled = true;
     
-    marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck);
+    
+    marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck, marcadorComputadora);
     comprobarGanador(marcadorComputadora, marcadorJugador);
 });
 
@@ -92,4 +92,22 @@ boton_nuevoJuego.addEventListener('click', () => {
  
      boton_pedirCarta.disabled   = false;
      boton_detener.disabled = false;
+
+    const carta1 = pedirCarta(deck);
+    const carta2 = pedirCarta(deck);
+    const carta3 = pedirCarta(deck);
+    console.log('cartas', carta1, carta2, carta3);
+    
+    marcadorJugador = marcadorJugador + valorCarta(carta1);
+    marcadorComputadora = marcadorComputadora + valorCarta(carta2);
+    marcadorJugador = marcadorJugador + valorCarta(carta3);
+    console.log('marcadorJugador', marcadorJugador);
+    console.log('marcadorComputadora', marcadorComputadora);
+    const cartaHTML1 = crearCartaHTML(carta1);
+    const cartaHTML2 = crearCartaHTML(carta2);
+    const cartaHTML3 = crearCartaHTML(carta3);
+    updateMarcadorImagenDOM(puntosHTML[1], marcadorJugador, divCartasJugador, cartaHTML1);
+    updateMarcadorImagenDOM(puntosHTML[0], marcadorComputadora, divCartasComputadora, cartaHTML2);
+    updateMarcadorImagenDOM(puntosHTML[1], marcadorJugador, divCartasJugador, cartaHTML3);
+     
 });

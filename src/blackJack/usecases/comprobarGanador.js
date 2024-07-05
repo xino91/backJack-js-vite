@@ -4,17 +4,17 @@ export const comprobarGanador = (marcadorComputadora, marcadorJugador) => {
         if(marcadorComputadora === marcadorJugador){
             alert("Empate");
         }
-        else if(marcadorComputadora > 21){
-            alert('Enhorabuena, Ganaste');
-        }
         else if(marcadorJugador > 21){
             alert('Perdiste');
+        }
+        else if(marcadorComputadora > 21 & marcadorJugador <= 21){
+            alert('Enhorabuena, ganaste');
         }
         else if(marcadorComputadora > marcadorJugador){
             alert('Perdiste')
         }
-        else{
-            alert('Enhorabuena, Ganaste');
+        else if(marcadorJugador > marcadorComputadora){
+            alert('Enhorabuena, ganaste');
         }
     }, 800);
 }
