@@ -17,6 +17,6 @@ export const turnoComputadora = (puntosHTML, divCartasComputadora, deck, marcado
 
     } while(  (marcadorComputadora < 17 ) );
 
-    console.log('PuntosComputadoraTurno', marcadorComputadora);
+    //console.log('PuntosComputadoraTurno', marcadorComputadora);
     return marcadorComputadora;
 }
