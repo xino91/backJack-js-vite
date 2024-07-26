@@ -27,8 +27,9 @@ deck = shuffleDeck(deck);
 
 let carta = pedirCarta(deck);
 carta = pedirCarta(deck);
+//desactivamos botones en la primera ejecución
 boton_pedirCarta.disabled = true;
-        boton_detener.disabled = true;
+boton_detener.disabled = true;
 
 
 /******************EVENTOS  ******************/
@@ -42,7 +43,7 @@ boton_pedirCarta.addEventListener('click', () => {
     updateMarcadorImagenDOM(puntosHTML[1], marcadorJugador, divCartasJugador, cartaHTML);
     
     if(marcadorJugador > 21 ){
-        //console.warn('Lo siento, perdiste');
+        console.warn('Lo siento, perdiste');
         boton_pedirCarta.disabled = true;
         boton_detener.disabled = true;
         marcadorComputadora = turnoComputadora(puntosHTML, divCartasComputadora, deck, marcadorComputadora, marcadorJugador);

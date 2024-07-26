@@ -1,4 +1,8 @@
-
+/**
+ * Mostrará un mensaje alert con el ganador del juego
+ * @param {number} marcadorComputadora 
+ * @param {number} marcadorJugador 
+ */
 export const comprobarGanador = (marcadorComputadora, marcadorJugador) => {
     setTimeout( () => {
         if(marcadorComputadora === marcadorJugador){
